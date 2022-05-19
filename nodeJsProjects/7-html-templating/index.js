@@ -2,6 +2,10 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
+//SETTING STATIC ASSETS
+// app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "/public")));
+
 //SETTING VIEW ENGINE
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views")); //one time setting per App
