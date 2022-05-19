@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head") %>
+  <body>
+    <%- include("partials/navbar") %>
+    <div class="container">
+      <h3>Generated random number : <%= num %></h3>
+
+      <% if(num % 2 === 0){ %>
+      <p>The Number is Even</p>
+      <% } else { %>
+      <p>The Number is Odd</p>
+      <% } %>
+
+      <h1><%= (num % 2 === 0) ? "EVEN" : "ODD" %></h1>
+    </div>
+    <%- include("partials/footer") %>
+  </body>
+</html>
