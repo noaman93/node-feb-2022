@@ -2,6 +2,9 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
+//IMPORTING data from data.json file
+const data = require("./data.json");
+
 //SETTING STATIC ASSETS
 // app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "/public")));
@@ -12,6 +15,8 @@ app.set("views", path.join(__dirname, "/views")); //one time setting per App
 
 //ROUTES
 app.get("/", (req, res) => {
+  // console.log(data.data[2]);
+
   res.render("home");
 });
 
