@@ -2,8 +2,12 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
+//parsing body data
+app.use(express.urlencoded({ extended: true }));
+
 //IMPORTING data from data.json file
-const data = require("./data.json");
+// const data = require("./data.json");
+const data = require("./blogsData.js");
 
 //SETTING STATIC ASSETS
 // app.use(express.static("public"));
@@ -15,7 +19,7 @@ app.set("views", path.join(__dirname, "/views")); //one time setting per App
 
 //ROUTES
 app.get("/", (req, res) => {
-  // console.log(data.data[2]);
+  // console.log(data[1]);
 
   res.render("home");
 });
@@ -32,8 +36,50 @@ app.get("/products", (req, res) => {
   res.render("products", { products });
 });
 
+//display all blogs
 app.get("/blogs", (req, res) => {
-  res.render("blogs");
+  //fake database query
+  const blogs = data;
+  res.render("blogs/blogs", { blogs });
+});
+
+//form to create new blog
+app.get("/blogs/new", (req, res) => {
+  res.render("blogs/new");
+});
+
+//create new blog on server ==> get
+app.get("/create-blogs", (req, res) => {
+  console.log(req.query);
+  // const title = req.query.title;
+  // const text = req.query.text;
+  // const img = req.query.img;
+
+  const { title, text, img } = req.query;
+  //fake database query
+  const blogs = data;
+
+  blogs.push({ title, text, img });
+
+  res.send(blogs);
+  // res.redirect("/blogs");
+});
+
+//create new blog on server ==> post
+app.post("/blogs", (req, res) => {
+  console.log(req.body);
+  // const title = req.query.title;
+  // const text = req.query.text;
+  // const img = req.query.img;
+
+  const { title, text, img } = req.body;
+  //fake database query
+  const blogs = data;
+
+  blogs.push({ title, text, img });
+
+  // res.send(blogs);
+  res.redirect("/blogs");
 });
 
 app.get("/contact", (req, res) => {

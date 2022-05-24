@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../partials/head") %>
+  <body>
+    <%- include("../partials/navbar") %>
+
+    <div class="container">
+      <h1>All Blogs</h1>
+
+      <a href="/blogs/new">Create New Blog</a>
+
+      <% for(let blog of blogs){ %>
+      <div class="div">
+        <h3><%= blog.title %></h3>
+        <img src="<%= blog.img %> " alt="" />
+        <p><%= blog.text %></p>
+        <hr />
+      </div>
+
+      <% } %>
+    </div>
+
+    <%- include("../partials/footer") %>
+  </body>
+</html>
